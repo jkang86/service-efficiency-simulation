@@ -115,3 +115,12 @@ for i in 1:num_trials
     end
     server_busy_until = arrival_times[i] + service_times[i]
 end
+
+taguchi_loss(y, m, k) = k * (y - m)^2
+
+optimal = 2.0
+k_wait = 10
+k_idle = 5
+
+loss_wait = taguchi_loss.(wait_times, optimal, k_wait)
+loss_idle = taguchi_loss.(idle_times, optimal, k_idle)
